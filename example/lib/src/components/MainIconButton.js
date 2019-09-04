@@ -10,7 +10,12 @@ const styles = {
   container: {
     position: "relative",
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    elevation: 5,
+    shadowRadius: 3,
+    shadowOpacity: 0.3,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 }
   },
   iconContainer: {
     alignItems: "center",
@@ -32,7 +37,7 @@ export default class MainIconButton extends Component {
       mainIconGradient
     } = this.props;
     return (
-      <TouchableOpacity style={[styles.container]} onPress={mainIconOnPress}>
+      <TouchableOpacity style={styles.container} onPress={mainIconOnPress}>
         <LinearGradient
           start={{ x: 0, y: 1 }}
           end={{ x: 1, y: 0 }}

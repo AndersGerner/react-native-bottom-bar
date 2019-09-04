@@ -1,25 +1,33 @@
 import React, { Component } from "react";
-import { View } from "react-native";
-import styles from "./styles/Shape.style";
-import colors from "./styles/common/colors";
+import PropTypes from "prop-types";
+import { View, Platform } from "react-native";
+import { _shapeStyle, _shadowStyle } from "./styles/Shape.style";
+import Androw from "react-native-androw";
 
-export default class Shape extends Component {
+class Shape extends Component {
   render() {
-    const { shapeStyle } = this.props;
+    const { shapeStyle, shapeColor, shapeShadowColor } = this.props;
     return (
-      <View
-        style={[
-          styles.shape.main,
-          styles.shape.customShadowStyle,
-          {
-            backgroundColor:
-              this.props.shapeColor || colors.theme.light.primaryBackground
-          },
-          shapeStyle || {
-            bottom: 89
-          }
-        ]}
-      />
+      <Androw style={_shadowStyle(shapeShadowColor)}>
+        <View
+          style={[
+            _shapeStyle(shapeColor),
+            shapeStyle
+          ]}
+        />
+      </Androw>
     );
   }
 }
+
+Shape.propTypes = {
+  shapeColor: PropTypes.string,
+  shapeShadowColor: PropTypes.string
+};
+
+Shape.defaultProps = {
+  shapeColor: "#FBFBFD",
+  shapeShadowColor: "#757575"
+};
+
+export default Shape;
